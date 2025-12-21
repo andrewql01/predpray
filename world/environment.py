@@ -13,5 +13,4 @@ class Environment:
     Environment managing the 2D toroidal world and all agents.
     Uses spatial grid for efficient neighbor queries.
     """
-
-        
+    pass

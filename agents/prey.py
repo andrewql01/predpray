@@ -1,3 +1,3 @@
 
 class Prey(Agent):
-    
+    pass
