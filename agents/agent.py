@@ -1,6 +1,9 @@
-import torch.
 import torch.nn as nn
+
+from enum import Enum
 from agent_properties import AgentProperties
+from network import AgentNetwork
+from world.environment import Environment
 
 class AgentType(Enum):
     """Agent type enum - for verification purposes"""
@@ -26,4 +29,8 @@ class Agent:
     def agent_type(self) -> AgentType:
         raise NotImplementedError("Subclasses must implement agent_type")
 
-    def act()
+    def act():
+        """
+        Make the agent act in the environment by taking an action based on the observation.
+        """
+        pass

@@ -8,7 +8,7 @@ class AgentProperties:
     """
     x: float
     y: float
-    
+     
     energy: float
     max_energy: float
     

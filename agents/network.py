@@ -11,6 +11,21 @@ class AgentNetwork(nn.Module):
         self.l1 = nn.Linear(input_size, hidden_size)
         self.l2 = nn.Linear(hidden_size, output_size)
         self.l3 = nn.Linear(output_size, output_size)
+    
+    @property
+    def input_size(self) -> int:
+        """Returns input size from first layer."""
+        return self.l1.in_features
+    
+    @property
+    def hidden_size(self) -> int:
+        """Returns hidden size from first layer."""
+        return self.l1.out_features
+    
+    @property
+    def output_size(self) -> int:
+        """Returns output size from last layer."""
+        return self.l3.out_features
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = torch.relu(self.l1(x))
@@ -28,7 +43,7 @@ class AgentNetwork(nn.Module):
     def set_weights(self, weights: dict) -> None:
         self.load_state_dict(weights)
     
-    def mutate(self, mutation_rate=0.1: float) -> AgentNetwork:
+    def mutate(self, mutation_rate: float = 0.1) -> 'AgentNetwork':
         instance = AgentNetwork(
             self.input_size, 
             self.hidden_size, 
@@ -36,8 +51,7 @@ class AgentNetwork(nn.Module):
         )
 
         with torch.no_grad():
-            for (name, param), (instance_name, instance_param) 
-            in zip(self.named_parameters(), instance.named_parameters()):
+            for (name, param), (instance_name, instance_param) in zip(self.named_parameters(), instance.named_parameters()):
                 noise = torch.randn_like(param) * mutation_rate
                 instance_param.data = param.data + noise
 
