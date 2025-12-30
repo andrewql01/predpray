@@ -1,23 +1,21 @@
-from dataclasses import dataclass
-
-
 class SimulationConfig:
     """
     Simple simulation configuration class with basic parameters.
     Singleton pattern - only one instance exists.
     """
+
     _instance = None
-    
+
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
         return cls._instance
-    
+
     def __init__(self):
         # Only initialize once
-        if hasattr(self, '_initialized'):
+        if hasattr(self, "_initialized"):
             return
-        
+
         # World dimensions
         self.world_width: int = 800
         self.world_height: int = 600
@@ -41,10 +39,12 @@ class SimulationConfig:
 
         # Visibility
         self.view_range: float = 100.0
-        
-        # Spatial grid optimization
-        self.grid_cell_size: float = 50.0
-        
+
+        # Agent visual appearance configuration
+        self.predator_portrayal: dict = {"color": "red", "shape": "circle", "size": 10}
+        self.prey_portrayal: dict = {"color": "blue", "shape": "circle", "size": 6}
+        self.default_portrayal: dict = {"color": "gray", "shape": "circle", "size": 4}
+
         self._initialized = True
 
 

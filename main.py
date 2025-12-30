@@ -1,13 +1,18 @@
 """
-Main entry point for the predator-prey simulation.
+Main entry point for the predator-prey simulation using pygame visualization.
+
+To run this simulation, use:
+    python main.py
 """
 
-from world.environment import Environment
-from ui.visualization import SimulationVisualizer
+from ui.simulation import Simulation
 
 
 def main():
-    """Main function to run the simulation visualization."""
+    """Main entry point."""
+    # Create and run the simulation
+    sim = Simulation()
+    sim.run()
 
 
 if __name__ == "__main__":

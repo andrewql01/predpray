@@ -1,36 +1,69 @@
-import torch.nn as nn
+"""
+Base agent class using Mesa.
+"""
 
-from enum import Enum
-from agent_properties import AgentProperties
-from network import AgentNetwork
-from world.environment import Environment
+from typing import Optional
+from mesa import Agent
+from agents.agent_properties import AgentProperties
+from agents.network import AgentNetwork
 
-class AgentType(Enum):
-    """Agent type enum - for verification purposes"""
-    PREDATOR = "predator"
-    PREY = "prey"
 
-class Agent:
-    """ 
-    Agent class used for simulation
+class PredatorPreyAgent(Agent):
+    """
+    Base agent class for predator-prey simulation.
+    Inherits from mesa.Agent.
     """
 
-    def __init__(self, network: AgentNetwork, environment: Environment, agent_properties: AgentProperties) -> None:
-        self.network = network
-        self.environment = environment
-        self.agent_properties = agent_properties
-    
+    def __init__(
+        self,
+        model,
+        network: Optional[AgentNetwork] = None,
+        properties: Optional[AgentProperties] = None,
+    ):
+        """Initialize the agent."""
+        pass
+
+    def _create_default_properties(self) -> AgentProperties:
+        """Creates default properties - to be overridden in subclasses."""
+        raise NotImplementedError
+
     @property
-    def is_predator(self) -> bool:
-        return self.agent_type == AgentType.PREDATOR
+    def energy(self) -> float:
+        """Energy property for easy access."""
+        raise NotImplementedError
 
+    @energy.setter
+    def energy(self, value: float):
+        """Energy setter."""
+        pass
 
     @property
-    def agent_type(self) -> AgentType:
-        raise NotImplementedError("Subclasses must implement agent_type")
+    def max_energy(self) -> float:
+        """Max energy property."""
+        raise NotImplementedError
 
-    def act():
-        """
-        Make the agent act in the environment by taking an action based on the observation.
-        """
+    @property
+    def fitness(self) -> float:
+        """Fitness property."""
+        raise NotImplementedError
+
+    @fitness.setter
+    def fitness(self, value: float):
+        """Fitness setter."""
+        pass
+
+    def is_alive(self) -> bool:
+        """Check if agent is alive."""
+        raise NotImplementedError
+
+    def step(self):
+        """Mesa step method - called by scheduler."""
+        pass
+
+    def act(self):
+        """Agent action - to be implemented in subclasses."""
+        raise NotImplementedError
+
+    def move_towards(self, target_pos):
+        """Move one step towards target position."""
         pass
