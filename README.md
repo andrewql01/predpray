@@ -29,19 +29,6 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 pip install uv
 ```
 
-### Install ty
-
-`ty` is included in the dev dependencies and will be installed automatically. You can also install it globally:
-
-```bash
-uv pip install ty
-```
-
-Or use it directly with `uvx`:
-```bash
-uvx ty check
-```
-
 ## Getting Started
 
 ### 1. Clone the repository
@@ -68,26 +55,13 @@ This will:
 uv run python main.py
 ```
 
-### 4. Type checking
-
-Run type checking with `ty`:
-
-```bash
-uv run ty check
-```
-
-Or use `uvx`:
-```bash
-uvx ty check
-```
-
 ## Development Workflow
 
 ### Running commands
 
 All Python commands should be run with `uv run`
 
-### Pre-commit hooks
+### Code Quality
 
 This project uses pre-commit hooks for code quality. Install them:
 
@@ -98,6 +72,17 @@ uv run pre-commit install
 The hooks will automatically:
 - Run `ruff` for linting and formatting
 - Run `ty` for type checking
+
+You can also run these manually:
+
+```bash
+# Type checking
+uv run ty check
+
+# Linting and formatting
+uv run ruff check .
+uv run ruff format .
+```
 
 ### Project Structure
 
