@@ -21,7 +21,7 @@ class Prey(PredatorPreyAgent):
             max_energy=config.prey_max_energy,
             speed=config.prey_speed,
         )
-        super().__init__(model, network, properties)
+        super().__init__(model, properties=properties, network=network)
 
     def act(self):
         """Prey behavior - flee from nearest predator."""

@@ -17,8 +17,8 @@ class PredatorPreyAgent(Agent):
     def __init__(
         self,
         model,
-        network: Optional[AgentNetwork] = None,
         properties: Optional[AgentProperties] = None,
+        network: Optional[AgentNetwork] = None,
     ):
         """Initialize the agent."""
         super().__init__(model)
@@ -33,31 +33,41 @@ class PredatorPreyAgent(Agent):
     @property
     def energy(self) -> float:
         """Energy property for easy access."""
-        raise NotImplementedError
+        if self.properties is None:
+            return 0.0
+        return self.properties.energy
 
     @energy.setter
     def energy(self, value: float):
         """Energy setter."""
-        pass
+        if self.properties is not None:
+            self.properties.energy = value
 
     @property
     def max_energy(self) -> float:
         """Max energy property."""
-        raise NotImplementedError
+        if self.properties is None:
+            return 0.0
+        return self.properties.max_energy
 
     @property
     def fitness(self) -> float:
         """Fitness property."""
-        raise NotImplementedError
+        if self.properties is None:
+            return 0.0
+        return self.properties.fitness
 
     @fitness.setter
     def fitness(self, value: float):
         """Fitness setter."""
-        pass
+        if self.properties is not None:
+            self.properties.fitness = value
 
     def is_alive(self) -> bool:
         """Check if agent is alive."""
-        raise NotImplementedError
+        if self.properties is None:
+            return False
+        return self.properties.is_alive()
 
     def step(self):
         """Mesa step method - called by scheduler."""

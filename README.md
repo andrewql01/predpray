@@ -117,3 +117,21 @@ predpray/
 - **torch** - PyTorch for neural networks (if using AI agents)
 - **numpy** - Numerical computing
 - **matplotlib** - Plotting (if needed)
+
+### Current Features
+- ✅ Basic visualization (predators and prey on white background)
+- ✅ Agent initialization and population management
+- ✅ Configuration system
+- ✅ Basic agent properties (energy, fitness, etc.)
+
+### Next Steps
+- 🚧 Agent behavior (hunting/fleeing)
+- 🚧 Environment step logic
+- 🚧 Neural network integration
+- 🚧 Reproduction system
+
+### Key Files to Know
+- `agents/predator.py` & `agents/prey.py` - Agent behavior (act methods)
+- `world/environment.py` - Main simulation logic (step method)
+- `agents/agent.py` - Base agent class with common functionality
+- `world/config.py` - All configuration parameters

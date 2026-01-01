@@ -29,11 +29,17 @@ class AgentProperties(ABC):
 
     def energy_ratio(self) -> float:
         """Returns energy ratio (0.0 - 1.0)"""
-        raise NotImplementedError
+        if self.max_energy == 0:
+            return 0.0
+        return self.energy / self.max_energy
 
     def can_reproduce(self, min_energy_ratio: float = 0.7, min_age: int = 50) -> bool:
         """Check if agent can reproduce"""
-        raise NotImplementedError
+        return (
+            self.energy_ratio() >= min_energy_ratio
+            and self.age >= min_age
+            and self.reproduction_cooldown <= 0
+        )
 
     def is_alive(self) -> bool:
         """Check if agent is alive (has energy)."""
