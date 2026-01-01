@@ -1,10 +1,10 @@
 """
-Base agent class using Mesa.
+agent class using Mesa.
 """
 
 from typing import Optional
 from mesa import Agent
-from agents.agent_properties import AgentProperties
+from agents.properties.agent_properties import AgentProperties
 from agents.network import AgentNetwork
 
 
@@ -21,7 +21,10 @@ class PredatorPreyAgent(Agent):
         properties: Optional[AgentProperties] = None,
     ):
         """Initialize the agent."""
-        pass
+        super().__init__(model)
+        self.pos = None
+        self.network = network
+        self.properties = properties
 
     def _create_default_properties(self) -> AgentProperties:
         """Creates default properties - to be overridden in subclasses."""

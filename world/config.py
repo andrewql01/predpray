@@ -1,21 +1,13 @@
-class SimulationConfig:
+from utils.singleton import Singleton
+
+
+class SimulationConfig(metaclass=Singleton):
     """
     Simple simulation configuration class with basic parameters.
     Singleton pattern - only one instance exists.
     """
 
-    _instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
     def __init__(self):
-        # Only initialize once
-        if hasattr(self, "_initialized"):
-            return
-
         # World dimensions
         self.world_width: int = 800
         self.world_height: int = 600
@@ -39,6 +31,9 @@ class SimulationConfig:
 
         # Visibility
         self.view_range: float = 100.0
+
+        # Simulation settings
+        self.fps: int = 60
 
         # Agent visual appearance configuration
         self.predator_portrayal: dict = {"color": "red", "shape": "circle", "size": 10}
