@@ -32,12 +32,30 @@ class SimulationConfig(metaclass=Singleton):
         # Visibility
         self.view_range: float = 100.0
 
+        # Combat/Interaction settings
+        self.attack_range: float = 15.0  # Distance to attack/kill
+        self.hunting_energy_cost: float = 0.5  # Energy cost per step when hunting
+        self.fleeing_energy_cost: float = 0.3  # Energy cost per step when fleeing
+        self.kill_energy_cost: float = 50.0  # Energy removed from prey when killed
+        self.kill_energy_reward: float = 30.0  # Energy gained by predator when killing
+        self.passive_energy_drain: float = 0.1  # Energy lost per step just for existing
+
         # Simulation settings
         self.fps: int = 60
+
+        # Grass settings
+        self.grass_cluster_count: int = 15  # Number of grass clusters
+        self.grass_per_cluster: int = 20  # Number of grass patches per cluster
+        self.grass_cluster_radius: float = 50.0  # Radius of grass cluster
+        self.grass_energy_value: float = 5.0  # Energy gained by prey when eating grass
+        self.grass_respawn_rate: float = (
+            0.01  # Probability of grass respawning per step
+        )
 
         # Agent visual appearance configuration
         self.predator_portrayal: dict = {"color": "red", "shape": "circle", "size": 10}
         self.prey_portrayal: dict = {"color": "blue", "shape": "circle", "size": 6}
+        self.grass_portrayal: dict = {"color": "green", "shape": "circle", "size": 3}
         self.default_portrayal: dict = {"color": "gray", "shape": "circle", "size": 4}
 
         self._initialized = True

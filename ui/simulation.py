@@ -7,6 +7,7 @@ import pygame
 from ui.color_manager import ColorManager
 from ui.renderers.prey_renderer import PreyRenderer
 from ui.renderers.predator_renderer import PredatorRenderer
+from ui.renderers.grass_renderer import GrassRenderer
 from world.config import config
 from world.environment import Environment
 
@@ -31,6 +32,7 @@ class Simulation:
         self.environment = Environment()
         self.prey_renderer = PreyRenderer(self.environment)
         self.predator_renderer = PredatorRenderer(self.environment)
+        self.grass_renderer = GrassRenderer(self.environment)
         self.color_manager = ColorManager()
 
         self.running = True
@@ -48,6 +50,9 @@ class Simulation:
         """Draw the current state of the simulation."""
         self.screen.fill((255, 255, 255))  # White background
 
+        # Render grass first (background layer)
+        self.grass_renderer.render(self.screen)
+        # Then render agents
         self.prey_renderer.render(self.screen)
         self.predator_renderer.render(self.screen)
 
