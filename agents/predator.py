@@ -3,7 +3,7 @@ Predator agent class.
 """
 
 from typing import Optional, TYPE_CHECKING, cast
-from agents.agent import PredatorPreyAgent
+from agents.agent import BaseAgent
 from agents.network import AgentNetwork
 from world.config import config
 from agents.properties.predator_properties import PredatorProperties
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from world.environment import Environment
 
 
-class Predator(PredatorPreyAgent):
+class Predator(BaseAgent):
     """
     Predator agent - hunts prey.
     """

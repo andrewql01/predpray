@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from world.environment import Environment
 
 
-class PredatorPreyAgent(Agent):
+class BaseAgent(Agent):
     """
     Base agent class for predator-prey simulation.
     Inherits from mesa.Agent.
@@ -98,12 +98,12 @@ class PredatorPreyAgent(Agent):
 
         return math.sqrt(dx * dx + dy * dy)
 
-    def _find_nearest_agent(self, agent_list: List["PredatorPreyAgent"]):
+    def _find_nearest_agent(self, agent_list: List["BaseAgent"]):
         """Find nearest agent from list within view range."""
         if self.pos is None or not agent_list:
             return None
 
-        nearest_agent: Optional["PredatorPreyAgent"] = None
+        nearest_agent: Optional["BaseAgent"] = None
         min_distance = config.view_range
 
         for agent in agent_list:

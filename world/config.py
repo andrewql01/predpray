@@ -52,6 +52,17 @@ class SimulationConfig(metaclass=Singleton):
             0.01  # Probability of grass respawning per step
         )
 
+        # Evolution/Training settings
+        self.death_fitness_penalty: float = -100.0  # Fitness penalty for being killed
+        self.headless_mode: bool = False  # Run without visualization
+        self.steps_per_frame: int = 1  # Steps per frame in visualization
+        self.models_save_dir: str = "models"  # Directory to save trained models
+        self.generation_steps: int = 1000  # Steps per generation
+        self.end_generation_on_extinction: bool = (
+            True  # End generation if species extinct
+        )
+        self.save_best_models: bool = True  # Save best models after training
+
         # Agent visual appearance configuration
         self.predator_portrayal: dict = {"color": "red", "shape": "circle", "size": 10}
         self.prey_portrayal: dict = {"color": "blue", "shape": "circle", "size": 6}

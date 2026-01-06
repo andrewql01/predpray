@@ -3,7 +3,7 @@ Prey agent class.
 """
 
 from typing import Optional, TYPE_CHECKING, cast, Tuple
-from agents.agent import PredatorPreyAgent
+from agents.agent import BaseAgent
 from agents.network import AgentNetwork
 from agents.properties.prey_properties import PreyProperties
 from agents.grass import Grass
@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from world.environment import Environment
 
 
-class Prey(PredatorPreyAgent):
+class Prey(BaseAgent):
     """
     Prey agent - flees from predators.
     """

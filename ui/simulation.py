@@ -8,6 +8,7 @@ from ui.color_manager import ColorManager
 from ui.renderers.prey_renderer import PreyRenderer
 from ui.renderers.predator_renderer import PredatorRenderer
 from ui.renderers.grass_renderer import GrassRenderer
+from ui.stats_renderer import StatsRenderer
 from world.config import config
 from world.environment import Environment
 
@@ -33,6 +34,7 @@ class Simulation:
         self.prey_renderer = PreyRenderer(self.environment)
         self.predator_renderer = PredatorRenderer(self.environment)
         self.grass_renderer = GrassRenderer(self.environment)
+        self.stats_renderer = StatsRenderer(self.environment)
         self.color_manager = ColorManager()
 
         self.running = True
@@ -55,6 +57,9 @@ class Simulation:
         # Then render agents
         self.prey_renderer.render(self.screen)
         self.predator_renderer.render(self.screen)
+
+        # Render statistics on top
+        self.stats_renderer.render(self.screen)
 
         pygame.display.flip()
 
